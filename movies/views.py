@@ -4,12 +4,13 @@ from rest_framework import generics
 # Create your views here.
 
 from movies.models import Genre, Language, Movie, Person
-from movies.serializers import GenreSerializer, LangSerializer, MovieSerializer, PersonSerializer
+from movies.serializers import AddCrewMemSerializer, GenreSerializer, LangSerializer, MovieDetailSerializer, MovieSerializer, PersonSerializer
+
 
 ############### MOVIE #################
 
 
-class MovieList(generics.ListAPIView):
+class MovieList(generics.ListCreateAPIView):
     serializer_class = MovieSerializer
 
     def get_queryset(self):
@@ -30,7 +31,7 @@ class MovieList(generics.ListAPIView):
 
 class MoiveDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
-    serializer_class = MovieSerializer
+    serializer_class = MovieDetailSerializer
 
 
 class TopMovies(generics.ListAPIView):
@@ -44,6 +45,9 @@ class TopMovies(generics.ListAPIView):
 
 
 ############### Crew #################
+
+class AddCrewMemember(generics.CreateAPIView):
+    serializer_class = AddCrewMemSerializer
 
 
 class PersonList(generics.ListCreateAPIView):

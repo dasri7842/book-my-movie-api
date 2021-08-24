@@ -14,5 +14,5 @@ urlpatterns = [
     path('movie/', views.MovieList.as_view()),
     path('movie/<int:pk>/', views.MoiveDetail.as_view()),
     path('movie/top/', views.TopMovies.as_view()),
-
+    path('movie/add_crew/', views.AddCrewMemember.as_view())
 ]
