@@ -44,15 +44,25 @@ class AddCrewMemSerializer(serializers.Serializer):
     role_name = serializers.CharField()
 
     def create(self, validated_data):
-        print(validated_data)
-        person = models.Person.objects.get(
-            pk=int(validated_data.get('person_id')))
-        movie = models.Movie.objects.get(
-            pk=int(validated_data.get('movie_id')))
-        crew_member = models.CrewMember.objects.create(
-            person=person, movie=movie, role=validated_data['role'], role_name=validated_data['role_name'])
 
-        crew_member.save()
+        try:
+            person = models.Person.objects.get(
+                pk=int(validated_data.get('person_id')))
+        except Exception as err_msg:
+            raise serializers.ValidationError(detail=err_msg)
+
+        try:
+            movie = models.Movie.objects.get(
+                pk=int(validated_data.get('movie_id')))
+        except Exception as err_msg:
+            raise serializers.ValidationError(detail=err_msg)
+
+        try:
+            crew_member = models.CrewMember.objects.create(
+                person=person, movie=movie, role=validated_data['role'], role_name=validated_data['role_name'])
+        except Exception as err_msg:
+            raise serializers.ValidationError(detail=err_msg)
+
         return crew_member
 
 
@@ -95,3 +105,12 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Movie
         fields = '__all__'
+
+
+class MovieMinDetailSerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(many=True, read_only=True)
+    languages = LangSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = models.Movie
+        exclude = ('crew',)
