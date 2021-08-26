@@ -1,5 +1,5 @@
 from django.contrib import admin
-from theatres.models import Theatre, Seat, Runs_on
+from theatres.models import Show, Theatre, Runs_on
 # Register your models here.
 
-admin.site.register((Theatre, Seat, Runs_on, ))
+admin.site.register((Theatre, Runs_on, Show))
