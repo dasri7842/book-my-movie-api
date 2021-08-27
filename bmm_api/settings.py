@@ -159,7 +159,7 @@ try:
     from bmm_api.local_settings import *
 except ImportError:
     import django_heroku
-    DEBUG = os.environ.get('DJANGO_DEBUG')
+    # DEBUG = os.environ.get('DJANGO_DEBUG')
     django_heroku.settings(locals())
 
 # For env variable, Secret key, database url.
