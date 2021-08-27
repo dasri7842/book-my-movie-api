@@ -6,10 +6,10 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-mysqlclient = "*"
 django-cors-headers = "*"
 gunicorn = "*"
 whitenoise = "*"
+psycopg2 = "*"
 
 [dev-packages]
 autopep8 = "*"

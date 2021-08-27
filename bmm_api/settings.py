@@ -19,9 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bmm-drf.herokuapp.com']
 
+
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # Application definition
 
@@ -137,11 +143,21 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# EMAIL SMTP configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 # production settings
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
+
 
 # Cors
 CORS_ALLOWED_ORIGINS = [
