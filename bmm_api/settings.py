@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import django_heroku
 import os
 from pathlib import Path
 
@@ -19,15 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bmm-drf.herokuapp.com']
 
-
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # Application definition
 
@@ -169,4 +164,6 @@ CORS_ALLOWED_ORIGINS = [
 try:
     from bmm_api.local_settings import *
 except ImportError:
-    pass
+    django_heroku.settings(locals())
+
+# For env variable, Secret key, database url.
