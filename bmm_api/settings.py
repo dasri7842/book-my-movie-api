@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import django_heroku
 import os
 from pathlib import Path
 
@@ -148,11 +147,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-# production settings
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-
 
 # Cors
 CORS_ALLOWED_ORIGINS = [
@@ -164,6 +158,7 @@ CORS_ALLOWED_ORIGINS = [
 try:
     from bmm_api.local_settings import *
 except ImportError:
+    import django_heroku
     django_heroku.settings(locals())
 
 # For env variable, Secret key, database url.
