@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bmm-drf.herokuapp.com']
@@ -159,6 +159,7 @@ try:
     from bmm_api.local_settings import *
 except ImportError:
     import django_heroku
+    DEBUG = os.environ.get('DJANGO_DEBUG')
     django_heroku.settings(locals())
 
 # For env variable, Secret key, database url.

@@ -4,7 +4,7 @@ from rest_framework import generics
 # Create your views here.
 
 from movies.models import Genre, Language, Movie, Person
-from movies.serializers import AddCrewMemSerializer, GenreSerializer, LangSerializer, MovieDetailSerializer, MovieSerializer, PersonSerializer
+from movies.serializers import AddCrewMemSerializer, MaxGenreSerializer, LanguageSerializer, MovieDetailSerializer, MovieSerializer, PersonSerializer
 
 
 ############### MOVIE #################
@@ -65,21 +65,21 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class GenreList(generics.ListCreateAPIView):
     queryset = Genre.objects.all()
-    serializer_class = GenreSerializer
+    serializer_class = MaxGenreSerializer
 
 
 class GenreDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Genre.objects.all()
-    serializer_class = GenreSerializer
+    serializer_class = MaxGenreSerializer
 
 ############## Language ###############
 
 
 class LanguageList(generics.ListCreateAPIView):
     queryset = Language.objects.all()
-    serializer_class = LangSerializer
+    serializer_class = LanguageSerializer
 
 
 class LanguageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Language.objects.all()
-    serializer_class = LangSerializer
+    serializer_class = LanguageSerializer

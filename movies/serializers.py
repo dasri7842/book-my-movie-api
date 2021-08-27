@@ -11,6 +11,17 @@ class GenreSerializer(serializers.ModelSerializer):
         model = models.Genre
         fields = '__all__'
 
+class MaxGenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Genre
+        fields = '__all__'
+
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Language
+        fields = '__all__'
+
 
 class LangSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
