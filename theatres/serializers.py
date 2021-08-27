@@ -147,7 +147,7 @@ class FilterShowsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Show
         list_serializer_class = ListFilterShowsSerializer
-        fields = ('show_time', 'price',)
+        fields = ('show_time', 'price', 'show_date', 'id')
 
 
 class TheatreShowsSerializer(serializers.ModelSerializer):
