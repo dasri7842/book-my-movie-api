@@ -1,7 +1,7 @@
-from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from bookings.models import Seat, Ticket
 from theatres.models import Theatre, Show
+from bookings.services import MailTickets
 
 
 class SeatSerializer(serializers.ModelSerializer):
@@ -59,5 +59,6 @@ class BookTicketSerailizer(serializers.ModelSerializer):
                 ticket.seats.add(seat)
             except Exception as e:
                 raise serializers.ValidationError(e)
-
+        ticket.save()
+        MailTickets(ticket=ticket, seats=", ".join(validated_data['seats']))
         return ticket
