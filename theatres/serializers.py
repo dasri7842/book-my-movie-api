@@ -44,10 +44,10 @@ class AddShowSerializer(serializers.ModelSerializer):
 class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Theatre
-        fields = ('city',)
+        fields = '__all__'
 
     def to_representation(self, instance):
-        return instance.city
+        return instance
 
 
 class MinifiedShowSerializer(serializers.ModelSerializer):

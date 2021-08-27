@@ -30,7 +30,8 @@ class CreateShow(generics.ListCreateAPIView):
 
 
 class CityList(generics.ListAPIView):
-    queryset = models.Theatre.objects.all()
+    queryset = models.Theatre.objects.order_by(
+        'city').values_list('city', flat=True).distinct('city')
     serializer_class = serializers.CitySerializer
 
 
