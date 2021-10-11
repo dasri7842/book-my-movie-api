@@ -66,7 +66,7 @@ class TheatreShows(generics.ListAPIView):
         filters['shows__movie__movie_id'] = self.kwargs['movie']
         filters['shows__language'] = params['language']
         filters['shows__show_date'] = params['show_date']
-        return models.Runs_on.objects.filter(**filters)
+        return models.Runs_on.objects.filter(**filters).distinct()
 
     def get_serializer_context(self):
         nested_filters = {}
